@@ -225,7 +225,7 @@ function filterCat(c,b){cat=c;document.querySelectorAll('.filters button').forEa
 function apply(){document.querySelectorAll('.card').forEach(x=>{let ok=(!cat||x.dataset.cat===cat);x.style.display=ok?'block':'none'})}
 async function useInChatGPT(id){
   const p=document.getElementById(id).textContent.trim();
-  const full='我想使用下面这个图片效果。请先让我选择/上传一张照片；我上传后，直接按这个效果处理。\n\n【效果提示词】\n'+p;
+  const full='本条消息中附带的照片，就是需要处理的目标原图。请直接以这张照片为输入，按照下面的效果提示词生成处理后的图片。\n\n不要把它当作效果参考图，不要要求我重新上传照片，也不需要再次确认。请直接开始处理。\n\n如果本条消息确实没有附带图片，才提醒我上传一张照片。\n\n【效果提示词】\n'+p;
   let copied=false;
   try{
     await navigator.clipboard.writeText(full); copied=true;
